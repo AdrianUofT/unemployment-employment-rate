@@ -1,0 +1,81 @@
+﻿"Unemployment rate, participation rate and employment rate by educational attainment, annual 1 2"
+"Frequency: Annual"
+"Table: 14-10-0020-01 (formerly CANSIM 282-0004)"
+"Release date: 2024-01-05"
+"Geography: Canada, Province or territory"
+""
+""
+
+,"Geography 3","Canada",,
+,"Labour force characteristics","Employment rate 5",,
+,"Sex","Both sexes",,
+,"Age group","15 to 24 years","25 to 44 years","45 years and over"
+"Educational attainment 4","Reference period"
+,,"Percentage",,
+"Total, all education levels","2019","58.7","83.2","50.4"
+,"2020","49.7","79.2","47.4"
+,"2021","55.5","82.4","48.3"
+,"2022","58.7","84.8","48.8"
+,"2023","58.0","84.7","48.9"
+"0 to 8  years 6","2019","29.3","48.0","15.9"
+,"2020","22.9","44.8","14.5"
+,"2021","27.2","46.4","15.3"
+,"2022","30.4","55.3","16.2"
+,"2023","28.0","48.7","16.6"
+"Some high school 7","2019","38.7","63.3","32.9"
+,"2020","31.2","61.3","30.5"
+,"2021","35.5","62.7","30.4"
+,"2022","39.3","65.2","29.5"
+,"2023","37.3","65.2","30.7"
+"High school graduate 8","2019","65.0","75.9","46.6"
+,"2020","55.2","70.7","43.3"
+,"2021","62.9","74.2","42.2"
+,"2022","64.4","77.5","43.5"
+,"2023","63.9","76.6","43.6"
+"Some postsecondary 9","2019","58.6","75.3","49.5"
+,"2020","48.9","68.9","45.2"
+,"2021","54.0","70.3","48.6"
+,"2022","60.9","78.1","46.7"
+,"2023","60.7","77.3","45.8"
+"Postsecondary certificate or diploma 10","2019","78.6","87.4","56.7"
+,"2020","68.8","81.7","52.6"
+,"2021","75.4","84.3","52.9"
+,"2022","77.7","87.5","53.0"
+,"2023","78.0","87.6","52.7"
+"University degree 11","2019","77.6","86.9","61.7"
+,"2020","66.1","84.3","58.9"
+,"2021","73.7","87.7","60.9"
+,"2022","75.0","88.4","60.8"
+,"2023","74.5","88.6","60.5"
+"Bachelor's degree","2019","78.1","87.1","60.9"
+,"2020","66.2","84.0","57.6"
+,"2021","73.6","86.9","59.9"
+,"2022","75.2","87.9","59.4"
+,"2023","74.1","88.3","59.8"
+"Above bachelor's degree","2019","72.9","86.6","63.1"
+,"2020","65.6","85.1","61.3"
+,"2021","74.9","89.3","62.8"
+,"2022","72.9","89.5","63.4"
+,"2023","78.0","89.1","61.9"
+
+
+
+
+Footnotes:
+1,"To ensure respondent confidentiality, estimates below a certain threshold are suppressed. For Canada, Quebec, Ontario, Alberta and British Columbia suppression is applied to all data below 1,500. The threshold level for Newfoundland and Labrador, Nova Scotia, New Brunswick, Manitoba and Saskatchewan is 500, while in Prince Edward Island, estimates under 200 are supressed. For census metropolitan areas (CMAs) and economic regions (ERs), use their respective provincial suppression levels mentioned above. Estimates are based on smaller sample sizes the more detailed the table becomes, which could result in lower data quality."
+2,"Starting in 2006, enhancements to the Labour Force Survey data processing system may have introduced a level shift in some estimates, particularly for less common labour force characteristics. Use caution when comparing estimates before and after 2006. For more information, contact statcan.labour-travail.statcan@statcan.gc.ca"
+3,"Excluding the territories."
+4,"The following categories refer to the highest level of schooling completed. Questions relating to educational attainment were changed in 1990, to better capture the relationship between educational attainment and labour market outcomes. Because this introduced a break in the education series, this table only contains data from 1990 onwards. Beginning January 1990, data on primary and secondary education reflects the highest grade completed. This provides a more consistent measure for those who accelerate or fail a grade than did years of school. A question on high school graduation has also been added since it is generally believed that persons who have never completed their secondary education have greater difficulty competing in the labour market. With the new questions, any education that could be counted towards a degree, certificate or diploma from an educational institution is taken as postsecondary education. The change allows more persons into the postsecondary education category. For example, trades programs offered through apprenticeship, vocational schools or private trade schools do not always require high school graduation. Such education is now considered as postsecondary while only primary or secondary would have been recognized prior to 1990. Finally, more information is collected on the type of postsecondary education: 1) some postsecondary; 2) trades certificate or diploma from a vocational or apprenticeship training; 3) non-university certificate or diploma from a community college, CEGEP or school of nursing; 4) university certificate below bachelors degree; 5) bachelors degree; and 6) university degree or certificate above bachelors degree.
+"
+5,"The employment rate is the number of persons employed expressed as a percentage of the population 15 years of age and over. The employment rate for a particular group (age, sex, marital status, etc.) is the number employed in that group expressed as a percentage of the population for that group. Estimates are percentages, rounded to the nearest tenth."
+6,"Primary education, grade 8 or lower. In Quebec, secondary II or lower."
+7,"Attended but did not complete secondary school. In Quebec, attended at least Secondary III but did not complete Secondary V. In Newfoundland and Labrador, attended at least the first year of secondary but did not complete the fourth year."
+8,"Received a high school diploma. In Quebec, completed Secondary V. In Newfoundland and Labrador, completed fourth year of secondary."
+9,"Worked toward, but did not complete, a degree, certificate (including a trade certificate) or diploma from an educational institution, including a university, beyond the secondary level. This includes vocational schools, apprenticeship training, community college, Collège d'Enseignement Général et Professionnel (CEGEP), and school of nursing."
+10,"Completed a certificate (including a trade certificate) or diploma from an educational institution beyond the secondary level. This includes certificates from vocational schools, apprenticeship training, community college, Collège d'Enseignement Général et Professionnel (CEGEP), and school of nursing. Also included are certificates below a Bachelor's degree obtained at a university."
+11,"Attained at least a university bachelor's degree."
+
+
+
+"How to cite: Statistics Canada. Table 14-10-0020-01  Unemployment rate, participation rate and employment rate by educational attainment, annual"
+https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1410002001

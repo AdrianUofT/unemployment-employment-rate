@@ -1,44 +1,94 @@
 #### Preamble ####
-# Purpose: Cleans the raw plane data recorded by two observers..... [...UPDATE THIS...]
-# Author: Rohan Alexander [...UPDATE THIS...]
-# Date: 6 April 2023 [...UPDATE THIS...]
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
+# Purpose: Cleans the raw dataset for employed and unemployed people
+# Author: Adrian Ly
+# Date: 18 March 2024
+# Contact: adrian.ly@mail.utoronto.ca
 # License: MIT
-# Pre-requisites: [...UPDATE THIS...]
-# Any other information needed? [...UPDATE THIS...]
 
 #### Workspace setup ####
+library(readr)
+library(lubridate)
 library(tidyverse)
+library(dplyr)
+library(knitr)
+library(janitor)
+library(scales)
+library(RColorBrewer)
+library(ggplot2)
+library(kableExtra)
+library(here)
+library(arrow)
 
-#### Clean data ####
-raw_data <- read_csv("inputs/data/plane_data.csv")
+# READ IN UNEMPLOYED AND EMPLOYED DATA
 
-cleaned_data <-
-  raw_data |>
-  janitor::clean_names() |>
-  select(wing_width_mm, wing_length_mm, flying_time_sec_first_timer) |>
-  filter(wing_width_mm != "caw") |>
-  mutate(
-    flying_time_sec_first_timer = if_else(flying_time_sec_first_timer == "1,35",
-                                   "1.35",
-                                   flying_time_sec_first_timer)
-  ) |>
-  mutate(wing_width_mm = if_else(wing_width_mm == "490",
-                                 "49",
-                                 wing_width_mm)) |>
-  mutate(wing_width_mm = if_else(wing_width_mm == "6",
-                                 "60",
-                                 wing_width_mm)) |>
-  mutate(
-    wing_width_mm = as.numeric(wing_width_mm),
-    wing_length_mm = as.numeric(wing_length_mm),
-    flying_time_sec_first_timer = as.numeric(flying_time_sec_first_timer)
-  ) |>
-  rename(flying_time = flying_time_sec_first_timer,
-         width = wing_width_mm,
-         length = wing_length_mm
-         ) |> 
-  tidyr::drop_na()
+unemployed_data <- read_csv("data/raw_data/unemployment.csv", skip = 11)  
+employed_data <- read_csv("data/raw_data/employment.csv", skip = 11)  
+
+# CLEAN NAMES
+
+unemployed_data <- unemployed_data %>% clean_names()
+employed_data <- employed_data %>% clean_names()
+
+# RENAME COLUMNS
+
+unemployed_data <- unemployed_data %>%
+  rename(
+    education_level = x1,
+    reference_period = age_group,
+    youth_unemployment = x15_to_24_years,
+    adult_unemployment = x25_to_44_years,
+    senior_unemployment = x45_years_and_over
+  )
+
+employed_data <- employed_data %>%
+  rename(
+    education_level = x1,
+    reference_period = age_group,
+    youth_employment = x15_to_24_years,
+    adult_employment = x25_to_44_years,
+    senior_employment = x45_years_and_over
+  )
+
+# Remove unwanted rows from the bottom, assuming you want to remove the last 5 rows as an example
+unemployed_data <- unemployed_data %>%
+  slice(1:(n() - 13))
+
+unemployed_data <- unemployed_data %>%
+  slice(-1:-2)  # This removes the first and second rows
+
+unemployed_data <- unemployed_data %>%
+  fill(education_level, .direction = "down")
+
+employed_data <- employed_data %>%
+  slice(1:(n() - 13))
+
+employed_data <- employed_data %>%
+  slice(-1:-2)  # This removes the first and second rows
+
+employed_data <- employed_data %>%
+  fill(education_level, .direction = "down")
+
+# Convert reference_period to numeric if it only contains years
+unemployed_data$reference_period <- as.numeric(unemployed_data$reference_period)
+employed_data$reference_period <- as.numeric(employed_data$reference_period)
+
+# In case of conversion errors due to non-numeric characters, use this to force conversion
+unemployed_data$youth_unemployment <- as.numeric(as.character(unemployed_data$youth_unemployment))
+unemployed_data$adult_unemployment <- as.numeric(as.character(unemployed_data$adult_unemployment))
+unemployed_data$senior_unemployment <- as.numeric(as.character(unemployed_data$senior_unemployment))
+
+unemployed_data <- unemployed_data %>%
+  mutate(education_level = sub("\\s+\\d+$", "", education_level))
+
+employed_data$youth_employment <- as.numeric(as.character(employed_data$youth_employment))
+employed_data$adult_employment <- as.numeric(as.character(employed_data$adult_employment))
+employed_data$senior_employment <- as.numeric(as.character(employed_data$senior_employment))
+
+employed_data <- employed_data %>%
+  mutate(education_level = sub("\\s+\\d+$", "", education_level))
+
+
 
 #### Save data ####
-write_csv(cleaned_data, "outputs/data/analysis_data.csv")
+write_csv(unemployed_data, here::here("data/analysis_data/cleaned_unemployed_data.csv"))
+write_csv(employed_data, here::here("data/analysis_data/cleaned_employed_data.csv"))

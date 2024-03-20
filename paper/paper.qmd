@@ -9,6 +9,7 @@ abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
 format: pdf
 number-sections: true
 bibliography: references.bib
+toc: true
 ---
 
 ```{r}
@@ -36,11 +37,88 @@ employed_data <- read.csv(here::here("data/analysis_data/cleaned_employed_data.c
 
 # Introduction
 
-You can and should cross-reference sections and sub-sections. We use @citeR and @rohan.
 
 
+# Data 
 
-# Data {#sec-data}
+## Data Measurement
+
+## Data Analysis
+
+
+# Model
+
+The goal of our modelling strategy is twofold. Firstly,...
+
+Here we briefly describe the Bayesian analysis model used to investigate... Background details and diagnostics are included in
+
+## Model set-up
+
+
+$$
+\begin{aligned}
+\text{Youth Unemployment} = \beta_0 &+ \beta_1 \cdot \text{Education Level} \\
+&+ \beta_2 \cdot \text{Reference Period} \\
+&+ \beta_3 \cdot \text{Adult Unemployment} \\
+&+ \beta_4 \cdot \text{Senior Unemployment} + \epsilon
+\end{aligned}
+$$
+
+Where:
+
+- `Youth Unemployment` is the dependent variable we are trying to predict. These are generally categorized as people who are between the ages of 15-24.
+- `Education Level` is an independent variable representing the level of education. (e.g., high school, undergraduate, postgraduate) 
+- `Reference Period` is another independent variable that represents the time frame of the data collection (e.g., year).
+- `Adult Unemployment` and `Senior Unemployment` are independent variables representing unemployment rates for adult and senior age groups, with people ages ranging between 25-44 and above 45, respectively.
+- `$\beta_0$` is the y-intercept, representing the expected value of `Youth Unemployment` when all the independent variables are 0.
+- `$\beta_1, \beta_2, \beta_3, \beta_4$` are the coefficients for each independent variable, representing the change in `Youth Unemployment` for a one-unit change in the respective independent variable, holding all other variables constant.
+- `$\epsilon$` represents the error term, accounting for the variability in `Youth Unemployment` not explained by the model.
+
+This model aims to understand how various factors contribute to youth unemployment. The coefficients 
+$\beta_1, \beta_2, \beta_3, \beta_4$ provide insights into the relationship between each independent variable and youth unemployment:
+
+- $\beta_1$ tells us how changes in the education level might affect youth unemployment, holding other factors constant. A positive coefficient suggests that higher education levels are associated with higher youth unemployment rates, while a negative coefficient suggests the opposite.
+
+- $\beta_2$ gives insight into how changes over the reference period (e.g., years) impact youth unemployment, which can help identify trends over time.
+
+- $\beta_3$ and $\beta_4$ help understand how unemployment rates in other age groups (adults and seniors) are related to youth unemployment. This can reveal whether higher unemployment rates in these groups are associated with higher or lower youth unemployment rates.
+
+The intercept $\beta_0$ provides the baseline level of youth unemployment when all other variables are zero, which may not always be a practical scenario but is necessary for the model's mathematical formulation. The error term $\epsilon$ captures the model's limitations and any random factors affecting youth unemployment that aren't included in the model.
+
+
+## Model justification
+
+The utilization of a multiple linear regression model for analyzing the relationship between people's unemployment status, age groups, and education level over time is substantiated by various rationales. Primarily, the model adeptly accommodates multiple independent variables such as education level and age group, each potentially exerting influence on the dependent variable, unemployment status. This capacity allows for an assessment of the individual impact of each predictor while simultaneously controlling for the influence of others. Such a model not only facilitates the quantification of the relationships between these factors and unemployment—via coefficients that express the extent of change in response per unit change in a predictor (with other variables held constant)—but also enables hypothesis testing on the parameters. This testing is instrumental in determining whether the associations between predictors and the response are statistically significant, thereby offering insights into the meaningfulness of these relationships.
+
+# Results
+
+Our results are summarized in @tbl-modelresults.
+
+```{r}
+#| echo: false
+#| eval: true
+#| warning: false
+#| message: false
+
+library(rstanarm)
+
+first_model <-
+  readRDS(file = here::here("models/unemployed_model.rds"))
+```
+
+```{r}
+#| echo: false
+#| eval: true
+#| label: tbl-modelresults
+#| tbl-cap: "Explanatory models of flight time based on wing width and wing length"
+#| warning: false
+
+modelsummary::modelsummary(
+  list(
+    "First model" = first_model
+  )
+)
+```
 
 
 ```{r}
@@ -59,88 +137,6 @@ ggplot(unemployed_data, aes(x = reference_period, y = youth_unemployment, group 
   scale_color_brewer(palette = "Set1")  
 
 ```
-
-```{r}
-#| label: emp
-#| fig-cap: Employment Rates
-#| echo: false
-#| warning: false
-#| message: false
-
-ggplot(employed_data, aes(x = reference_period, y = youth_employment, group = education_level, color = education_level)) +
-  geom_line() +
-  theme_minimal() +
-  labs(title = "Youth Employment by Education Level Over Time",
-       x = "Year",
-       y = "Youth Unemployment Rate (%)") +
-  scale_color_brewer(palette = "Set1")  
-```
-
-Talk way more about it. 
-
-
-
-# Model
-
-The goal of our modelling strategy is twofold. Firstly,...
-
-Here we briefly describe the Bayesian analysis model used to investigate... Background details and diagnostics are included in
-
-## Model set-up
-
-Define $y_i$ as the number of seconds that the plane remained aloft. Then $\beta_i$ is the wing width and $\gamma_i$ is the wing length, both measured in millimeters.  
-
-\begin{align} 
-y_i|\mu_i, \sigma &\sim \mbox{Normal}(\mu_i, \sigma) \\
-\mu_i &= \alpha + \beta_i + \gamma_i\\
-\alpha &\sim \mbox{Normal}(0, 2.5) \\
-\beta &\sim \mbox{Normal}(0, 2.5) \\
-\gamma &\sim \mbox{Normal}(0, 2.5) \\
-\sigma &\sim \mbox{Exponential}(1)
-\end{align}
-
-We run the model in R [@citeR] using the `rstanarm` package of @rstanarm. We use the default priors from `rstanarm`.
-
-
-### Model justification
-
-We expect a positive relationship between the size of the wings and time spent aloft. In particular...
-
-We can use maths by including latex between dollar signs, for instance $\theta$.
-
-
-# Results
-
-Our results are summarized in @tbl-modelresults.
-
-```{r}
-#| echo: false
-#| eval: true
-#| warning: false
-#| message: false
-
-library(rstanarm)
-
-first_model <-
-  readRDS(file = here::here("models/first_model.rds"))
-```
-
-```{r}
-#| echo: false
-#| eval: true
-#| label: tbl-modelresults
-#| tbl-cap: "Explanatory models of flight time based on wing width and wing length"
-#| warning: false
-
-modelsummary::modelsummary(
-  list(
-    "First model" = first_model
-  ),
-  statistic = "mad",
-  fmt = 2
-)
-```
-
 
 # Discussion
 

@@ -9,29 +9,41 @@
 
 
 #### Workspace setup ####
+library(readr)
+library(lubridate)
 library(tidyverse)
-library(rstanarm)
+library(dplyr)
+library(knitr)
+library(janitor)
+library(scales)
+library(RColorBrewer)
+library(ggplot2)
+library(kableExtra)
+library(here)
+library(arrow)
+library(lme4)
 
 #### Read data ####
-analysis_data <- read_csv("data/analysis_data/analysis_data.csv")
+unemployment_data <- read_csv("data/analysis_data/cleaned_unemployed_data.csv")  
+employment_data <- read_csv("data/analysis_data/cleaned_employed_data.csv")  
 
-### Model data ####
-first_model <-
-  stan_glm(
-    formula = flying_time ~ length + width,
-    data = analysis_data,
-    family = gaussian(),
-    prior = normal(location = 0, scale = 2.5, autoscale = TRUE),
-    prior_intercept = normal(location = 0, scale = 2.5, autoscale = TRUE),
-    prior_aux = exponential(rate = 1, autoscale = TRUE),
-    seed = 853
-  )
+model <- lm(youth_unemployment ~ education_level + reference_period + adult_unemployment + senior_unemployment, data = unemployment_data)
 
+model2 <- lm(youth_employment ~ education_level + reference_period + adult_employment + senior_employment, data = employment_data)
+
+# Summary of the model
+summary(model)
+
+summary(model2)
 
 #### Save model ####
 saveRDS(
-  first_model,
-  file = "models/first_model.rds"
+  model,
+  file = "models/unemployed_model.rds"
 )
 
+saveRDS(
+  model2,
+  file = "models/employed_model.rds"
+)
 

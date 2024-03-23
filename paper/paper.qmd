@@ -70,9 +70,9 @@ Where:
 - `Education Level` is an independent variable representing the level of education. (e.g., high school, undergraduate, postgraduate) 
 - `Reference Period` is another independent variable that represents the time frame of the data collection (e.g., year).
 - `Adult Unemployment` and `Senior Unemployment` are independent variables representing unemployment rates for adult and senior age groups, with people ages ranging between 25-44 and above 45, respectively.
-- `$\beta_0$` is the y-intercept, representing the expected value of `Youth Unemployment` when all the independent variables are 0.
-- `$\beta_1, \beta_2, \beta_3, \beta_4$` are the coefficients for each independent variable, representing the change in `Youth Unemployment` for a one-unit change in the respective independent variable, holding all other variables constant.
-- `$\epsilon$` represents the error term, accounting for the variability in `Youth Unemployment` not explained by the model.
+- $\beta_0$ is the y-intercept, representing the expected value of `Youth Unemployment` when all the independent variables are 0.
+- $\beta_1, \beta_2, \beta_3, \beta_4$ are the coefficients for each independent variable, representing the change in `Youth Unemployment` for a one-unit change in the respective independent variable, holding all other variables constant.
+- $\epsilon$ represents the error term, accounting for the variability in `Youth Unemployment` not explained by the model.
 
 This model aims to understand how various factors contribute to youth unemployment. The coefficients 
 $\beta_1, \beta_2, \beta_3, \beta_4$ provide insights into the relationship between each independent variable and youth unemployment:
@@ -140,7 +140,7 @@ ggplot(unemployed_data, aes(x = reference_period, y = youth_unemployment, group 
 
 # Discussion
 
-## First discussion point {#sec-first-point}
+## First discussion point
 
 If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this. 
 

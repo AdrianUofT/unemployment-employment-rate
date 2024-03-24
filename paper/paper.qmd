@@ -21,6 +21,7 @@ library(readr)
 library(lubridate)
 library(tidyverse)
 library(dplyr)
+library(tidyr)
 library(knitr)
 library(janitor)
 library(scales)
@@ -48,9 +49,27 @@ employed_data <- read.csv(here::here("data/analysis_data/cleaned_employed_data.c
 
 # Model
 
-The goal of our modelling strategy is twofold. Firstly,...
+The goal of our modeling strategy, utilizing multiple linear regression, is multifaceted:
 
-Here we briefly describe the Bayesian analysis model used to investigate... Background details and diagnostics are included in
+- **Understanding Relationships**: To understand the relationship between several independent variables, such as education level and age groups, and the dependent variable, which in this context is the youth unemployment rates. The model is designed to isolate the effect of each variable on unemployment rates.
+
+- **Quantifying Impact**: To quantify the impact of each predictor. Regression coefficients provide a numerical value that represents the expected change in the dependent variable for a one-unit change in an independent variable, all else being equal.
+
+- **Predictive Analysis**: To develop a predictive framework that can be employed to estimate or forecast the outcome variable, in this case, unemployment rates, when provided with new data for the predictors.
+
+- **Inferential Statistics**: To conduct hypothesis testing to ascertain whether the relationships observed within the data are statistically significant and not merely due to random variation.
+
+- **Policy Decision Support**: To offer empirical evidence that may inform policy decisions. For instance, if a correlation is found between higher education levels and increased unemployment, it might indicate the necessity for policies that better align education with employment opportunities.
+
+- **Data-Driven Insights**: To extract insights from the data that could lead to an enhanced understanding of labor market dynamics, such as how different age groups' unemployment rates interact.
+
+- **Modeling Assumptions Testing**: To validate the assumptions underlying the regression model, ensuring the reliability and accuracy of the model's predictions.
+
+- **Confounding Variable Control**: To account for potential confounders that might influence the relationship between education level and unemployment rates. The inclusion of relevant variables aims to minimize estimation bias.
+
+- **Sensitivity Analysis**: To comprehend the model's sensitivity to changes in inputs, which assists in evaluating the robustness of the model.
+
+This strategy is designed to produce a model that is both explanatory and predictive, offering a current snapshot of the relationships in the data as well as a tool for future forecasting. Such a model can be utilized to guide decision-making processes, or pinpoint where interventions may be effective.
 
 ## Model set-up
 
@@ -122,8 +141,32 @@ modelsummary::modelsummary(
 
 
 ```{r}
-#| label: unemp
-#| fig-cap: Unemployment Rates
+#| echo: false
+#| eval: true
+#| label: tbl-youth2019
+#| tbl-cap: "Percentage Change in Youth Unemployment by education level (2019-2023)"
+#| warning: false
+
+# Filter data for the years 2019 and 2023
+filtered_data <- unemployed_data %>%
+  filter(reference_period %in% c(2019, 2023))
+
+# Compare youth unemployment rate by education level for 2019 and 2023
+comparison <- filtered_data %>%
+  group_by(education_level, reference_period) %>%
+  summarise(mean_unemployment = mean(youth_unemployment, na.rm = TRUE)) %>%
+  pivot_wider(names_from = reference_period, values_from = mean_unemployment) %>%
+  mutate(Percentage_Change = round((`2023` - `2019`)/`2019` * 100, 2)) %>%
+  arrange(education_level)
+
+kable(comparison)
+
+```
+
+
+```{r}
+#| label: unempyouth
+#| fig-cap: Youth Unemployment Rates
 #| echo: false
 #| warning: false
 #| message: false
@@ -137,6 +180,45 @@ ggplot(unemployed_data, aes(x = reference_period, y = youth_unemployment, group 
   scale_color_brewer(palette = "Set1")  
 
 ```
+
+
+```{r}
+#| label: unempadult
+#| fig-cap: Adult Unemployment Rates
+#| echo: false
+#| warning: false
+#| message: false
+
+ggplot(unemployed_data, aes(x = reference_period, y = adult_unemployment, group = education_level, color = education_level)) +
+  geom_line() +
+  theme_minimal() +
+  labs(title = "Adult Unemployment by Education Level Over Time",
+       x = "Year",
+       y = "Adult Unemployment Rate (%)") +
+  scale_color_brewer(palette = "Set1")  
+
+```
+
+
+```{r}
+#| label: unempsenior
+#| fig-cap: Senior Unemployment Rates
+#| echo: false
+#| warning: false
+#| message: false
+
+ggplot(unemployed_data, aes(x = reference_period, y = senior_unemployment, group = education_level, color = education_level)) +
+  geom_line() +
+  theme_minimal() +
+  labs(title = "Senior Unemployment by Education Level Over Time",
+       x = "Year",
+       y = "Senior Unemployment Rate (%)") +
+  scale_color_brewer(palette = "Set1")  
+
+```
+
+
+
 
 # Discussion
 

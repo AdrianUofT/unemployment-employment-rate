@@ -30,6 +30,8 @@ library(ggplot2)
 library(kableExtra)
 library(here)
 library(arrow)
+library(rstanarm)
+library(modelsummary)
 
 unemployed_data <- read.csv(here::here("data/analysis_data/cleaned_unemployed_data.csv"))
 employed_data <- read.csv(here::here("data/analysis_data/cleaned_employed_data.csv"))
@@ -119,9 +121,7 @@ Our results are summarized in @tbl-modelresults.
 #| warning: false
 #| message: false
 
-library(rstanarm)
-
-first_model <-
+model <-
   readRDS(file = here::here("models/unemployed_model.rds"))
 ```
 
@@ -129,13 +129,18 @@ first_model <-
 #| echo: false
 #| eval: true
 #| label: tbl-modelresults
-#| tbl-cap: "Explanatory models of flight time based on wing width and wing length"
+#| tbl-cap: "Regression Analysis: Impact of Education Level and Age on Youth Unemployment"
 #| warning: false
+#| message: false
+#| results: 'asis'
 
+# Customizing the appearance of the table using modelsummary options
 modelsummary::modelsummary(
-  list(
-    "First model" = first_model
-  )
+  model,
+  gof_omit = "Observations|R-squared|Adj. R-squared|AIC|BIC|Log Likelihood|RMSE",
+  coef_omit = "Constant",
+  fmt = 2,
+  stars = TRUE
 )
 ```
 
@@ -159,10 +164,34 @@ comparison <- filtered_data %>%
   mutate(Percentage_Change = round((`2023` - `2019`)/`2019` * 100, 2)) %>%
   arrange(education_level)
 
-kable(comparison)
-
+kable(comparison, 
+      digits = 2, 
+      col.names = c("Education Level", "Unemployment Rate (2019)", "Unemployment Rate (2023)", "Percentage Change (%)"))
 ```
 
+```{r}
+#| echo: false
+#| eval: true
+#| label: tbl-youth2022
+#| tbl-cap: "Percentage Change in Youth Unemployment by education level (2022-2023)"
+#| warning: false
+
+# Filter data for the years 2019 and 2023
+filtered_data <- unemployed_data %>%
+  filter(reference_period %in% c(2022, 2023))
+
+# Compare youth unemployment rate by education level for 2019 and 2023
+comparison <- filtered_data %>%
+  group_by(education_level, reference_period) %>%
+  summarise(mean_unemployment = mean(youth_unemployment, na.rm = TRUE)) %>%
+  pivot_wider(names_from = reference_period, values_from = mean_unemployment) %>%
+  mutate(Percentage_Change = round((`2023` - `2022`)/`2022` * 100, 2)) %>%
+  arrange(education_level)
+
+kable(comparison, 
+      digits = 2, 
+      col.names = c("Education Level", "Unemployment Rate (2022)", "Unemployment Rate (2023)", "Percentage Change (%)"))
+```
 
 ```{r}
 #| label: unempyouth

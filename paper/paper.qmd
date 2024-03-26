@@ -66,7 +66,7 @@ kable(head(unemployed_data), col.names = column_names, caption = "Unemployed Dat
 
 ## Data Analysis
 
-This paper uses the Statistics of Canada Unemployment rate, participation rate and employment rate by educational attainment, annual dataset. We are using the `R programming language` [@citeR] to conduct our analysis along with `readR` [@citereadR], `lubridate` [@citelubridate], `tidyverse` [@citetidyverse], `dplyr` [@citedplyr], `tidyr` [@citetidyr], `knitr` [@citeknitr], `janitor` [@citejanitor], `scales` [@citescales], `RColorBrewer` [@citeRColorBrewer], `ggplot2` [@citeggplot2], `kableExtra` [@citekableExtra], `here` [@citeHere], `arrow` [@citeArrow], `rstanarm` [@citerstanarm], `modelsummary` [@citemodelsummary], and `lme4` [@citelme4].
+This paper uses the Statistics of Canada `Unemployment rate, participation rate and employment rate by educational attainment, annual` [@citedataset] dataset. We are using the `R programming language` [@citeR] to conduct our analysis along with `readR` [@citereadR], `lubridate` [@citelubridate], `tidyverse` [@citetidyverse], `dplyr` [@citedplyr], `tidyr` [@citetidyr], `knitr` [@citeknitr], `janitor` [@citejanitor], `scales` [@citescales], `RColorBrewer` [@citeRColorBrewer], `ggplot2` [@citeggplot2], `kableExtra` [@citekableExtra], `here` [@citeHere], `arrow` [@citeArrow], `rstanarm` [@citerstanarm], `modelsummary` [@citemodelsummary], and `lme4` [@citelme4].
 
 # Model
 

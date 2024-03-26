@@ -23,3 +23,8 @@ library(here)
 library(arrow)
 
 #### Test data ####
+
+# Read in data
+
+unemployed_data <- read_csv("data/analysis_data/cleaned_unemployment.csv")  
+simulated_data <- read_csv("data/analysis_data/simulated_unemployed.csv")  

@@ -1,4 +1,4 @@
-# Are people really struggling to find a job in todays job market?
+# Evaluating the Influence of Education on Current Unemployment Trends
 
 **Statement on LLM Usage: Aspects of the code and paper were written with the help of ChatGPT. Some of the data interpretation, introduction, abstract and discussion were also written using ChatGPT. The entire chat history is available in `other/llm/usage.txt`**
 

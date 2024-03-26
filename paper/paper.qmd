@@ -1,5 +1,5 @@
 ---
-title: "Are people really struggling to find a job?"
+title: "Evaluating the Influence of Education on Current Unemployment Trends"
 author: 
   - Adrian Ly
 thanks: "Code and data are available at: [LINK](https://github.com/AdrianUofT/unemployment-employment-rate)"

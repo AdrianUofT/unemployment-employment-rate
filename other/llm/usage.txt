@@ -673,3 +673,184 @@ This code creates a new column `Percentage_Change` in the table, which calculate
 \]
 
 Please ensure that the column names match those in your actual dataset. If the names are differ
+
+User
+
+can you change the (1) at the header of the model to something more informative? Also can you change the names of the stuff in the model table to be more nicer
+
+ChatGPT
+
+The (1) in the header typically represents the first model in a series when using modelsummary to compare multiple models side by side. If you're only displaying a single model, this can be omitted or replaced with a more descriptive label. Additionally, to change the names to be more user-friendly, you can utilize the col.names and glance_custom arguments.
+
+Here is how you can modify your existing Quarto (QMD) code chunk:
+
+markdown
+Copy code
+```{r tbl-modelresults}
+#| echo: false
+#| eval: true
+#| label: tbl-modelresults
+#| tbl-cap: "Regression Analysis: Impact of Education Level and Age on Youth Unemployment"
+#| warning: false
+#| message: false
+#| results: 'asis'
+
+library(modelsummary)
+
+# Customizing the names in the model output
+nice_names <- c(
+  "(Intercept)" = "Intercept",
+  "education_levelAbove bachelor's degree" = "Above Bachelor's Degree",
+  "education_levelBachelor's degree" = "Bachelor's Degree",
+  "education_levelHigh school graduate" = "High School Graduate",
+  "education_levelPostsecondary certificate or diploma" = "Postsecondary Cert/Diploma",
+  "education_levelSome high school" = "Some High School",
+  "education_levelSome postsecondary" = "Some Postsecondary",
+  "education_levelTotal, all education levels" = "All Education Levels",
+  "education_levelUniversity degree" = "University Degree",
+  "reference_period" = "Reference Period",
+  "adult_unemployment" = "Adult Unemployment",
+  "senior_unemployment" = "Senior Unemployment"
+)
+
+modelsummary::modelsummary(
+  model,
+  col.names = nice_names,
+  estimate_suffix = c("***" = " (p < 0.001)", "**"  = " (p < 0.01)", "*" = " (p < 0.05)", "+" = " (p < 0.1)"),
+  coef_map = nice_names,
+  gof_map = c(
+    "Num.Obs." = "Number of Observations",
+    "R2" = "R-Squared",
+    "R2 Adj." = "Adjusted R-Squared",
+    "AIC" = "Akaike Information Criterion",
+    "BIC" = "Bayesian Information Criterion",
+    "Log.Lik." = "Log-Likelihood",
+    "RMSE" = "Root Mean Squared Error"
+  )
+)
+vbnet
+Copy code
+
+In the revised code:
+
+- `nice_names`: This is a named vector used to create nicer, more readable names for the variables and statistics in your model output.
+- `col.names`: The argument within `modelsummary` where you can specify nicer names directly.
+- `estimate_suffix`: This allows you to add significance level descriptions next to the stars.
+- `coef_map`: Maps the variable names from your model to the nicer names you've created.
+- `gof_map`: A similar mapping for Goodness-of-Fit statistics to provide more descriptive names.
+
+By using these customizations, you can improve the readability of your model output table. Ensure tha
+
+User
+
+ggplot(unemployed_data, aes(x = reference_period, y = adult_unemployment, group = education_level, color = education_level)) +
+  geom_line() +
+  theme_minimal() +
+  labs(title = "Adult Unemployment by Education Level Over Time",
+       x = "Year",
+       y = "Adult Unemployment Rate (%)") +
+  scale_color_brewer(palette = "Set1")  
+
+can you change the  education_level to a nicer name
+
+ChatGPT
+
+To change the education_level variable to a nicer name in your ggplot legend, you can use the scale_color_discrete function in ggplot2, which allows you to set custom labels for the legend. Here’s how you can modify your code:
+
+r
+Copy code
+ggplot(unemployed_data, aes(x = reference_period, y = adult_unemployment, group = education_level, color = education_level)) +
+  geom_line() +
+  theme_minimal() +
+  labs(title = "Youth Unemployment by Education Level Over Time",
+       x = "Year",
+       y = "Youth Unemployment Rate (%)",
+       color = "Education Level") +  # This labels the legend title
+  scale_color_brewer(palette = "Set1") +
+  scale_color_discrete(labels = c("0 to 8 years" = "Up to 8 Years",
+                                  "Above bachelor's degree" = "Postgraduate",
+                                  "Bachelor's degree" = "Bachelor's",
+                                  "High school graduate" = "High School",
+                                  "Postsecondary certificate or diploma" = "Postsec. Cert./Dip.",
+                                  "Some high school" = "Partial High School",
+                                  "Some postsecondary" = "Some College",
+                                  "Total, all education levels" = "All Levels",
+                                  "University degree" = "University"))
+Please adjust the names on the right-hand side of the labels argument in scale_color_discrete to match the actual factor levels of the education_level variable in your dataset.
+
+Also, notice that the title in labs() was changed to match the image you shared, which references "Youth Unemployment." Ensure that the variables reference_period, adult_unemployment, and education_level match the column names in your unemployed_data dataframe.
+
+If you run this modified code, it should change the legend labels in the ggplot to the specified nicer names.
+
+User
+
+given the cleaned data, can you give me r code in order to display the head of the data into my qmd file
+
+ChatGPT
+
+Certainly! To display the head of your data frame in a Quarto (QMD) document, you can use the kable function from the knitr package, which creates a nicely formatted table. Here's an R code chunk you can include in your QMD file:
+
+markdown
+Copy code
+```{r display-head, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+library(knitr)
+
+# Assuming your data is in a dataframe called cleaned_data
+# Display the head of the dataframe
+kable(head(cleaned_data), caption = "First Six Rows of the Dataset")
+sql
+Copy code
+
+In this code chunk:
+
+- The `echo=FALSE` option hides the R code in the knitted document, showing only the table.
+- `message=FALSE` and `warning=FALSE` prevent messages and warnings from being displayed.
+- `results='asis'` ensures that the markdown generated by `kable` is rendered as HTML or LaTeX (depending on your output format) without any R formatting.
+- Replace `cleaned_data` with the actual name of your dataframe containing the cleaned data.
+
+When you knit your QMD file, this chunk will produce a table displaying the first six rows of your data.
+
+User
+
+#| echo: false
+#| eval: true
+#| label: tbl-data
+#| tbl-cap: "Unemployed Dataset from 2019 to 2023 by education level"
+#| warning: false
+
+kable(head(unemployed_data))
+
+can you revise the code so that the formatting is correct and that the names in the headers look nice
+
+ChatGPT
+
+To improve the formatting and header names in your table using kable, you can specify the column names more nicely within the kable function call by using the col.names argument. Here's how you can adjust your Quarto (QMD) code chunk:
+
+markdown
+Copy code
+```{r tbl-data}
+#| echo: false
+#| eval: true
+#| label: tbl-data
+#| tbl-cap: "Unemployed Dataset from 2019 to 2023 by Education Level"
+#| warning: false
+#| message: false
+#| results: 'asis'
+
+library(knitr)
+
+# Customizing column names
+column_names <- c("Education Level", "Reference Period", "Youth Unemployment", "Adult Unemployment", "Senior Unemployment")
+
+# Assuming your data is in a dataframe called unemployed_data
+# Display the head of the dataframe with custom column names
+kable(head(unemployed_data), col.names = column_names, caption = "Unemployed Dataset from 2019 to 2023 by Education Level")
+vbnet
+Copy code
+
+
+In this code chunk, `col.names` is used to provide more user-friendly names for the columns. Make sure that the number of names provided in `column_names` matches the number of columns in `head(unemployed_data)`.
+
+The `results='asis'` directive is also included to ensure that the output is formatted correctly when knit. This will display the table with the specified nicer column names and a caption that matches the content of your data.
+
+Please ensure that `library(knitr)` is called beforehand (it's assumed to be included in your global setup if not shown here), and replace `unemployed_data` with the actual name of your dataset if it's different. When you knit your document, this code will produce a table with the headers having the specified nicer names.

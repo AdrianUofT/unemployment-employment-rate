@@ -44,6 +44,24 @@ employed_data <- read.csv(here::here("data/analysis_data/cleaned_employed_data.c
 
 # Data 
 
+```{r}
+#| echo: false
+#| eval: true
+#| label: tbl-data
+#| tbl-cap: "Unemployed Dataset from 2019 to 2023 by education level"
+#| warning: false
+#| message: false
+#| results: 'asis'
+
+# Customizing column names
+column_names <- c("Education Level", "Reference Period", "Youth Unemployment", "Adult Unemployment", "Senior Unemployment")
+
+# Assuming your data is in a dataframe called unemployed_data
+# Display the head of the dataframe with custom column names
+kable(head(unemployed_data), col.names = column_names, caption = "Unemployed Dataset from 2019 to 2023 by Education Level")
+```
+
+
 ## Data Measurement
 
 ## Data Analysis
@@ -113,7 +131,8 @@ The utilization of a multiple linear regression model for analyzing the relation
 
 # Results
 
-Our results are summarized in @tbl-modelresults.
+## Youth Unemployment
+
 
 ```{r}
 #| echo: false
@@ -134,13 +153,29 @@ model <-
 #| message: false
 #| results: 'asis'
 
-# Customizing the appearance of the table using modelsummary options
+# Specify custom names for coefficients and goodness-of-fit statistics if needed
+custom_coef_names <- c(
+  "education_levelAbove bachelor's degree" = "Above Bachelor's",
+  "education_levelBachelor's degree" = "Bachelor's",
+  "education_levelHigh school graduate" = "High School Grad",
+  "education_levelPostsecondary certificate or diploma" = "Postsec. Cert/Dip",
+  "education_levelSome high school" = "Some High School",
+  "education_levelSome postsecondary" = "Some Postsec.",
+  "education_levelTotal, all education levels" = "All Levels",
+  "education_levelUniversity degree" = "University",
+  "reference_period" = "Reference Period",
+  "adult_unemployment" = "Adult Unemployment",
+  "senior_unemployment" = "Senior Unemployment"
+)
+
+# Use modelsummary to create the table
 modelsummary::modelsummary(
-  model,
-  gof_omit = "Observations|R-squared|Adj. R-squared|AIC|BIC|Log Likelihood|RMSE",
-  coef_omit = "Constant",
+  list(
+    "Baseline Model for Youth Unemployment" = model
+  ),
+  coef_rename = custom_coef_names,
+  stars = TRUE,
   fmt = 2,
-  stars = TRUE
 )
 ```
 
@@ -205,11 +240,72 @@ ggplot(unemployed_data, aes(x = reference_period, y = youth_unemployment, group 
   theme_minimal() +
   labs(title = "Youth Unemployment by Education Level Over Time",
        x = "Year",
-       y = "Youth Unemployment Rate (%)") +
-  scale_color_brewer(palette = "Set1")  
+       y = "Youth Unemployment Rate (%)",
+       color = "Education Level") +  # This labels the legend title
+  scale_color_brewer(palette = "Set1") +
+  scale_color_discrete(labels = c("0 to 8 years" = "Up to 8 Years",
+                                  "Above bachelor's degree" = "Postgraduate",
+                                  "Bachelor's degree" = "Bachelor's",
+                                  "High school graduate" = "High School",
+                                  "Postsecondary certificate or diploma" = "Postsec. Cert./Dip.",
+                                  "Some high school" = "Partial High School",
+                                  "Some postsecondary" = "Some College",
+                                  "Total, all education levels" = "All Levels",
+                                  "University degree" = "University"))
 
 ```
 
+
+## Adult Unemployment
+
+```{r}
+#| echo: false
+#| eval: true
+#| label: tbl-adult2019
+#| tbl-cap: "Percentage Change in Adult Unemployment by education level (2019-2023)"
+#| warning: false
+
+# Filter data for the years 2019 and 2023
+filtered_data <- unemployed_data %>%
+  filter(reference_period %in% c(2019, 2023))
+
+# Compare youth unemployment rate by education level for 2019 and 2023
+comparison <- filtered_data %>%
+  group_by(education_level, reference_period) %>%
+  summarise(mean_unemployment = mean(adult_unemployment, na.rm = TRUE)) %>%
+  pivot_wider(names_from = reference_period, values_from = mean_unemployment) %>%
+  mutate(Percentage_Change = round((`2023` - `2019`)/`2019` * 100, 2)) %>%
+  arrange(education_level)
+
+kable(comparison, 
+      digits = 2, 
+      col.names = c("Education Level", "Unemployment Rate (2019)", "Unemployment Rate (2023)", "Percentage Change (%)"))
+```
+
+
+```{r}
+#| echo: false
+#| eval: true
+#| label: tbl-adult2022
+#| tbl-cap: "Percentage Change in Adult Unemployment by education level (2022-2023)"
+#| warning: false
+
+# Filter data for the years 2019 and 2023
+filtered_data <- unemployed_data %>%
+  filter(reference_period %in% c(2022, 2023))
+
+# Compare youth unemployment rate by education level for 2019 and 2023
+comparison <- filtered_data %>%
+  group_by(education_level, reference_period) %>%
+  summarise(mean_unemployment = mean(adult_unemployment, na.rm = TRUE)) %>%
+  pivot_wider(names_from = reference_period, values_from = mean_unemployment) %>%
+  mutate(Percentage_Change = round((`2023` - `2022`)/`2022` * 100, 2)) %>%
+  arrange(education_level)
+
+kable(comparison, 
+      digits = 2, 
+      col.names = c("Education Level", "Unemployment Rate (2022)", "Unemployment Rate (2023)", "Percentage Change (%)"))
+```
 
 ```{r}
 #| label: unempadult
@@ -223,9 +319,71 @@ ggplot(unemployed_data, aes(x = reference_period, y = adult_unemployment, group 
   theme_minimal() +
   labs(title = "Adult Unemployment by Education Level Over Time",
        x = "Year",
-       y = "Adult Unemployment Rate (%)") +
-  scale_color_brewer(palette = "Set1")  
+       y = "Adult Unemployment Rate (%)",
+       color = "Education Level") +  # This labels the legend title
+  scale_color_brewer(palette = "Set1") +
+  scale_color_discrete(labels = c("0 to 8 years" = "Up to 8 Years",
+                                  "Above bachelor's degree" = "Postgraduate",
+                                  "Bachelor's degree" = "Bachelor's",
+                                  "High school graduate" = "High School",
+                                  "Postsecondary certificate or diploma" = "Postsec. Cert./Dip.",
+                                  "Some high school" = "Partial High School",
+                                  "Some postsecondary" = "Some College",
+                                  "Total, all education levels" = "All Levels",
+                                  "University degree" = "University"))
 
+```
+
+
+## Senior Unemployment
+
+```{r}
+#| echo: false
+#| eval: true
+#| label: tbl-senior2019
+#| tbl-cap: "Percentage Change in Senior Unemployment by education level (2019-2023)"
+#| warning: false
+
+# Filter data for the years 2019 and 2023
+filtered_data <- unemployed_data %>%
+  filter(reference_period %in% c(2019, 2023))
+
+# Compare youth unemployment rate by education level for 2019 and 2023
+comparison <- filtered_data %>%
+  group_by(education_level, reference_period) %>%
+  summarise(mean_unemployment = mean(senior_unemployment, na.rm = TRUE)) %>%
+  pivot_wider(names_from = reference_period, values_from = mean_unemployment) %>%
+  mutate(Percentage_Change = round((`2023` - `2019`)/`2019` * 100, 2)) %>%
+  arrange(education_level)
+
+kable(comparison, 
+      digits = 2, 
+      col.names = c("Education Level", "Unemployment Rate (2019)", "Unemployment Rate (2023)", "Percentage Change (%)"))
+```
+
+
+```{r}
+#| echo: false
+#| eval: true
+#| label: tbl-senior2022
+#| tbl-cap: "Percentage Change in Senior Unemployment by education level (2022-2023)"
+#| warning: false
+
+# Filter data for the years 2019 and 2023
+filtered_data <- unemployed_data %>%
+  filter(reference_period %in% c(2022, 2023))
+
+# Compare youth unemployment rate by education level for 2019 and 2023
+comparison <- filtered_data %>%
+  group_by(education_level, reference_period) %>%
+  summarise(mean_unemployment = mean(senior_unemployment, na.rm = TRUE)) %>%
+  pivot_wider(names_from = reference_period, values_from = mean_unemployment) %>%
+  mutate(Percentage_Change = round((`2023` - `2022`)/`2022` * 100, 2)) %>%
+  arrange(education_level)
+
+kable(comparison, 
+      digits = 2, 
+      col.names = c("Education Level", "Unemployment Rate (2022)", "Unemployment Rate (2023)", "Percentage Change (%)"))
 ```
 
 
@@ -241,8 +399,18 @@ ggplot(unemployed_data, aes(x = reference_period, y = senior_unemployment, group
   theme_minimal() +
   labs(title = "Senior Unemployment by Education Level Over Time",
        x = "Year",
-       y = "Senior Unemployment Rate (%)") +
-  scale_color_brewer(palette = "Set1")  
+       y = "Senior Unemployment Rate (%)",
+       color = "Education Level") +  # This labels the legend title
+  scale_color_brewer(palette = "Set1") +
+  scale_color_discrete(labels = c("0 to 8 years" = "Up to 8 Years",
+                                  "Above bachelor's degree" = "Postgraduate",
+                                  "Bachelor's degree" = "Bachelor's",
+                                  "High school graduate" = "High School",
+                                  "Postsecondary certificate or diploma" = "Postsec. Cert./Dip.",
+                                  "Some high school" = "Partial High School",
+                                  "Some postsecondary" = "Some College",
+                                  "Total, all education levels" = "All Levels",
+                                  "University degree" = "University"))
 
 ```
 

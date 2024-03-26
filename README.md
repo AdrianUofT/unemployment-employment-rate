@@ -4,7 +4,7 @@
 
 ## Overview
 
-We examine data regarding unemployment rates for people with varying education levels and age groups. The dataset covers unemployment rates from 2019-2023. 
+We examine data regarding unemployment rates for people with varying education levels and age groups. The dataset covers unemployment rates from 2019-2023. We're leveraging a multiple linear regression model to estimate the impact of various education levels on unemployment rates among the youth. The model incorporates age groups and education as predictors to understand their influence on unemployment trends. Our aim is to quantify these relationships and identify significant predictors that can inform policy decisions. This study also evaluates the net change in unemployment rates, providing a nuanced view of the labor market's evolution over the years specified.
 
 ## File Structure
 

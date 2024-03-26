@@ -2,6 +2,10 @@
 
 **Statement on LLM Usage: Aspects of the code and paper were written with the help of ChatGPT. Some of the data interpretation, introduction, abstract and discussion were also written using ChatGPT. The entire chat history is available in `other/llm/usage.txt`**
 
+## Overview
+
+We examine data regarding unemployment rates for people with varying education levels and age groups. The dataset covers unemployment rates from 2019-2023. 
+
 ## File Structure
 
 The repo is structured as:

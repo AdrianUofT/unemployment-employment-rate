@@ -32,9 +32,9 @@ library(here)
 library(arrow)
 library(rstanarm)
 library(modelsummary)
+library(lme4)
 
 unemployed_data <- read.csv(here::here("data/analysis_data/cleaned_unemployed_data.csv"))
-employed_data <- read.csv(here::here("data/analysis_data/cleaned_employed_data.csv"))
 ```
 
 

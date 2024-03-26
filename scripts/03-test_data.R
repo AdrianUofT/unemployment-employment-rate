@@ -1,15 +1,25 @@
 #### Preamble ####
-# Purpose: Tests... [...UPDATE THIS...]
-# Author: Rohan Alexander [...UPDATE THIS...]
-# Date: 11 February 2023 [...UPDATE THIS...]
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
+# Purpose: Tests the simulated and real data for any errors
+# Author: Adrian Ly
+# Date: 18 March 2024
+# Contact: adrian.ly@mail.utoronto.ca
 # License: MIT
-# Pre-requisites: [...UPDATE THIS...]
-# Any other information needed? [...UPDATE THIS...]
+# Pre-requisites: First run 00-simulate_data and download dataset
+# Any other information needed? Real dataset can be downloaded at https://www150.statcan.gc.ca/t1/tbl1/en/cv.action?pid=1410002001
 
 
 #### Workspace setup ####
+library(readr)
+library(lubridate)
 library(tidyverse)
-# [...UPDATE THIS...]
+library(dplyr)
+library(knitr)
+library(janitor)
+library(scales)
+library(RColorBrewer)
+library(ggplot2)
+library(kableExtra)
+library(here)
+library(arrow)
 
 #### Test data ####

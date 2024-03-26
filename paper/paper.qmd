@@ -179,6 +179,11 @@ modelsummary::modelsummary(
 )
 ```
 
+The following formula was used to calculate the net percentage change in the unemployment rate:
+
+$$
+\text{Net Percentage Change} = \left( \frac{\text{Value at End Period} - \text{Value at Start Period}}{\text{Value at Start Period}} \right) \times 100\%
+$$
 
 ```{r}
 #| echo: false
@@ -203,6 +208,8 @@ kable(comparison,
       digits = 2, 
       col.names = c("Education Level", "Unemployment Rate (2019)", "Unemployment Rate (2023)", "Percentage Change (%)"))
 ```
+
+
 
 ```{r}
 #| echo: false
@@ -255,6 +262,13 @@ ggplot(unemployed_data, aes(x = reference_period, y = youth_unemployment, group 
 
 ```
 
+We then used the following formula to calculate the overall percentage change between years:
+
+$$
+\text{Overall Percentage Change} = \left( \frac{\text{Sum of Rates in X Year} - \text{Sum of Rates in Y Year}}{\text{Sum of Rates in Y Year}} \right) \times 100\%
+$$
+
+The overall percentage change for the youth unemployment rate is $\approx 0.92 \%$ increase between 2019 and 2023 and $\approx 10.45 \%$ increase between 2022 and 2023. 
 
 ## Adult Unemployment
 
@@ -307,6 +321,8 @@ kable(comparison,
       col.names = c("Education Level", "Unemployment Rate (2022)", "Unemployment Rate (2023)", "Percentage Change (%)"))
 ```
 
+Again using the same formula as before, the overall percentage change for the adult unemployment rate is $\approx 0.89 \%$ increase between 2019 and 2023 and $\approx 9.98 \%$ increase between 2022 and 2023. 
+
 ```{r}
 #| label: unempadult
 #| fig-cap: Adult Unemployment Rates
@@ -333,6 +349,7 @@ ggplot(unemployed_data, aes(x = reference_period, y = adult_unemployment, group 
                                   "University degree" = "University"))
 
 ```
+
 
 
 ## Senior Unemployment
@@ -386,6 +403,7 @@ kable(comparison,
       col.names = c("Education Level", "Unemployment Rate (2022)", "Unemployment Rate (2023)", "Percentage Change (%)"))
 ```
 
+The overall percentage change for the senior unemployment rate is $\approx 13.54 \%$ decrease between 2019 and 2023 and $\approx 6.11 \%$ decrease between 2022 and 2023. 
 
 ```{r}
 #| label: unempsenior

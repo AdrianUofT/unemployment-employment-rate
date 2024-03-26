@@ -854,3 +854,52 @@ In this code chunk, `col.names` is used to provide more user-friendly names for 
 The `results='asis'` directive is also included to ensure that the output is formatted correctly when knit. This will display the table with the specified nicer column names and a caption that matches the content of your data.
 
 Please ensure that `library(knitr)` is called beforehand (it's assumed to be included in your global setup if not shown here), and replace `unemployed_data` with the actual name of your dataset if it's different. When you knit your document, this code will produce a table with the headers having the specified nicer names.
+
+User
+
+can you give me the formula code in latex for the overall percentage change
+
+Sure, here's the LaTeX code for the overall percentage change formula:
+
+latex
+Copy code
+\[
+\text{Overall Percentage Change} = \left( \frac{\text{Sum of Rates in 2023} - \text{Sum of Rates in 2019}}{\text{Sum of Rates in 2019}} \right) \times 100\%
+\]
+
+When compiled, this LaTeX code will display the mathematical formula for calculating the overall percentage change.
+
+User
+
+can you give me the formula for the net percentage change? that is the formula you used to calculate the percentage change column
+
+ChatGPT
+
+Certainly! The net percentage change for each education level, as seen in the "Percentage Change (%)" column of the table, is calculated using the formula:
+
+Net Percentage Change
+=
+(
+End Value
+−
+Start Value
+Start Value
+)
+×
+100
+%
+Net Percentage Change=( 
+Start Value
+End Value−Start Value
+
+ )×100%
+
+In LaTeX format, the code for this formula would be:
+
+latex
+Copy code
+\[
+\text{Net Percentage Change} = \left( \frac{\text{Value at End Period} - \text{Value at Start Period}}{\text{Value at Start Period}} \right) \times 100\%
+\]
+
+This formula is used to calculate the change from the start period (2019) to the end period (2023) for each education level category in the dataset. The result is then multiplied by 100 to convert it to a percentage.

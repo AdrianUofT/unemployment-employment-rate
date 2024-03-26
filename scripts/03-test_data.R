@@ -4,7 +4,7 @@
 # Date: 18 March 2024
 # Contact: adrian.ly@mail.utoronto.ca
 # License: MIT
-# Pre-requisites: First run 00-simulate_data and download dataset
+# Pre-requisites: First run 01-simulate_data and download dataset
 # Any other information needed? Real dataset can be downloaded at https://www150.statcan.gc.ca/t1/tbl1/en/cv.action?pid=1410002001
 
 

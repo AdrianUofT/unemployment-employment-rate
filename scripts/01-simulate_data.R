@@ -4,6 +4,7 @@
 # Date: 18 March 2024
 # Contact: adrian.ly@mail.utoronto.ca
 # License: MIT
+# Pre-requisites: Run 00-install_packages.R first
 
 #### Workspace setup ####
 library(readr)

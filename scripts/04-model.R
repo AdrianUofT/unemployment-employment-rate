@@ -1,11 +1,11 @@
 #### Preamble ####
-# Purpose: Models... [...UPDATE THIS...]
-# Author: Rohan Alexander [...UPDATE THIS...]
-# Date: 11 February 2023 [...UPDATE THIS...]
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
+# Purpose: Models the Unemployment Rate 
+# Author: Adrian Ly
+# Date: 18 March 2024
+# Contact: adrian.ly@mail.utoronto.ca
 # License: MIT
-# Pre-requisites: [...UPDATE THIS...]
-# Any other information needed? [...UPDATE THIS...]
+# Pre-requisites: Download the dataset and run 00-install_packages.R and 02-data_cleaning.R first
+# Any other information needed? Dataset can be downloaded from https://www150.statcan.gc.ca/t1/tbl1/en/cv.action?pid=1410002001
 
 
 #### Workspace setup ####
@@ -25,16 +25,11 @@ library(lme4)
 
 #### Read data ####
 unemployment_data <- read_csv("data/analysis_data/cleaned_unemployed_data.csv")  
-employment_data <- read_csv("data/analysis_data/cleaned_employed_data.csv")  
 
 model <- lm(youth_unemployment ~ education_level + reference_period + adult_unemployment + senior_unemployment, data = unemployment_data)
 
-model2 <- lm(youth_employment ~ education_level + reference_period + adult_employment + senior_employment, data = employment_data)
-
 # Summary of the model
 summary(model)
-
-summary(model2)
 
 #### Save model ####
 saveRDS(
@@ -42,8 +37,5 @@ saveRDS(
   file = "models/unemployed_model.rds"
 )
 
-saveRDS(
-  model2,
-  file = "models/employed_model.rds"
-)
+
 

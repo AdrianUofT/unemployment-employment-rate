@@ -132,8 +132,7 @@ The utilization of a multiple linear regression model for analyzing the relation
 
 # Results
 
-## Youth Unemployment
-
+## Model Interpretation: 
 
 ```{r}
 #| echo: false
@@ -180,7 +179,34 @@ modelsummary::modelsummary(
 )
 ```
 
-The following formula was used to calculate the net percentage change in the unemployment rate:
+Based on the regression model output, as seen in @tbl-modelresults, several interpretations can be drawn:
+
+- **Baseline Unemployment**: The intercept of `r format(328.01, nsmall = 2)` suggests a baseline youth unemployment level, conditional on all other predictor variables being zero.
+
+- **Impact of Higher Education**:
+  - *Above Bachelor’s Degree*: The coefficient `r format(5.14, nsmall = 2)`*** indicates a significant and positive association with youth unemployment rates, implying potential overqualification or job market mismatches.
+  - *Bachelor’s Degree*: Similarly, a coefficient of `r format(4.14, nsmall = 2)`** suggests that a bachelor's degree is associated with higher unemployment.
+  - *University Degree*: With a coefficient of `r format(4.27, nsmall = 2)`**, university graduates also face higher unemployment rates.
+
+- **Some Postsecondary Education**: A negative coefficient of `r format(-2.20, nsmall = 2)`+ for those with some postsecondary education indicates a decrease in unemployment compared to the reference group.
+
+- **Adult Unemployment**: The significant positive coefficient `r format(2.19, nsmall = 2)`*** for adult unemployment implies a correlation with youth unemployment rates.
+
+- **Time Factor**: The non-significant coefficient for the reference period suggests that time does not significantly alter youth unemployment rates when holding other factors constant.
+
+- **Goodness of Fit**:
+  - The high R-squared value of `r format(0.923, nsmall = 3)` indicates that the model explains much of the variance in youth unemployment rates.
+  - The Adjusted R-squared value of `r format(0.898, nsmall = 3)` takes into account the number of predictors and suggests a good fit to the data.
+
+- **Significance Levels**:
+  - The asterisks (`***`, `**`, `*`) represent the level of statistical significance, with more stars denoting stronger evidence against the null hypothesis.
+
+These findings underscore the complexity of youth unemployment and the varied impact of educational attainment on job market outcomes.
+
+
+## Youth Unemployment
+
+The results presented in @tbl-youth2019 and @tbl-youth2022 shows the percentage change of youth unemployment rates over the years by education level for 2019-2023 and 2022-2023 respectively. The column on the far right shows the net percentage change for that time period.The following formula was used to calculate the net percentage change in the unemployment rate:
 
 $$
 \text{Net Percentage Change} = \left( \frac{\text{Value at End Period} - \text{Value at Start Period}}{\text{Value at Start Period}} \right) \times 100\%
@@ -210,8 +236,6 @@ kable(comparison,
       col.names = c("Education Level", "Unemployment Rate (2019)", "Unemployment Rate (2023)", "Percentage Change (%)"))
 ```
 
-
-
 ```{r}
 #| echo: false
 #| eval: true
@@ -237,7 +261,7 @@ kable(comparison,
 ```
 
 ```{r}
-#| label: unempyouth
+#| label: fig-unempyouth
 #| fig-cap: Youth Unemployment Rates
 #| echo: false
 #| warning: false
@@ -263,7 +287,7 @@ ggplot(unemployed_data, aes(x = reference_period, y = youth_unemployment, group 
 
 ```
 
-We then used the following formula to calculate the overall percentage change between years:
+Looking at @fig-unempyouth, it gives us a visualization of the youth unemployment rates for varying education levels across the years. We then used the following formula to calculate the overall percentage change between years:
 
 $$
 \text{Overall Percentage Change} = \left( \frac{\text{Sum of Rates in X Year} - \text{Sum of Rates in Y Year}}{\text{Sum of Rates in Y Year}} \right) \times 100\%
@@ -271,7 +295,18 @@ $$
 
 The overall percentage change for the youth unemployment rate is $\approx 0.92 \%$ increase between 2019 and 2023 and $\approx 10.45 \%$ increase between 2022 and 2023. 
 
+The figures and tables from our analysis present a nuanced picture of youth unemployment across different educational strata over a period extending from 2019 to 2023.
+
+- **Trends Over Time**: A clear pattern of fluctuation is evident in the unemployment rates. The peak observed in 2020 may correlate with the economic downturn caused by the COVID-19 pandemic, affecting youth employment disproportionately.
+
+- **Impact of Education**: The variation in unemployment by education level underscores the importance of educational attainment. Notably, higher levels of education such as "Above Bachelor’s" and "Bachelor’s" do not necessarily correlate with lower unemployment rates, suggesting a potential oversupply of higher education qualifications or mismatches between education and job market needs.
+
+- **Percentage Changes**:
+  - *Net Percentage Change*: Individual educational levels show diverse trends, with some experiencing increases in unemployment, while others show decreases over the four-year span.
+  - *Overall Percentage Change*: The aggregate data reveals a modest uptick in youth unemployment rates, which may reflect broader economic and societal shifts.
+
 ## Adult Unemployment
+
 
 ```{r}
 #| echo: false
@@ -322,10 +357,8 @@ kable(comparison,
       col.names = c("Education Level", "Unemployment Rate (2022)", "Unemployment Rate (2023)", "Percentage Change (%)"))
 ```
 
-Again using the same formula as before, the overall percentage change for the adult unemployment rate is $\approx 0.89 \%$ increase between 2019 and 2023 and $\approx 9.98 \%$ increase between 2022 and 2023. 
-
 ```{r}
-#| label: unempadult
+#| label: fig-unempadult
 #| fig-cap: Adult Unemployment Rates
 #| echo: false
 #| warning: false
@@ -351,7 +384,19 @@ ggplot(unemployed_data, aes(x = reference_period, y = adult_unemployment, group 
 
 ```
 
+Similar to the youth unemployment, @tbl-adult2019 and @tbl-adult2022 show the net percentage change in the adult unemployment for the years 2019-2023 and 2022-2023 respectively. 
 
+The analysis of adult unemployment rates from 2019 to 2023 uncovers distinct trends across education levels. Notably, individuals with "0 to 8 years" of education show a marked increase in unemployment rates, which could indicate that lower educational attainment is a significant risk factor for adult unemployment.
+
+Conversely, adults with education "Above bachelor's degree" experienced a decrease in unemployment rates, suggesting that higher education may offer better protection against job market downturns. This trend aligns with the expectation that higher qualifications translate to greater employment stability.
+
+For other education categories, such as "Bachelor's degree" and "High school graduate," the changes are relatively moderate, indicating a more nuanced relationship between education and job market outcomes for these groups.
+
+Overall, the adult unemployment rate shows an approximately $\approx 0.89 \%$ increase from 2019 to 2023, which might reflect the lingering effects of economic events or shifts in the labor market dynamics. However, the period from 2022 to 2023 sees a more pronounced increase of approximately $\approx 9.98 \%$, highlighting the potential for rapid changes in unemployment within a single year.
+
+These patterns underscore the importance of ongoing education and training throughout one's career, as well as the need for targeted support for adults with lower levels of education.
+
+@fig-unempadult illustrates the fluctuation in unemployment rates across different education levels. It reveals that unemployment is not uniform across the educational spectrum, which has implications for policymakers and educators alike. 
 
 ## Senior Unemployment
 
@@ -404,10 +449,8 @@ kable(comparison,
       col.names = c("Education Level", "Unemployment Rate (2022)", "Unemployment Rate (2023)", "Percentage Change (%)"))
 ```
 
-The overall percentage change for the senior unemployment rate is $\approx 13.54 \%$ decrease between 2019 and 2023 and $\approx 6.11 \%$ decrease between 2022 and 2023. 
-
 ```{r}
-#| label: unempsenior
+#| label: fig-unempsenior
 #| fig-cap: Senior Unemployment Rates
 #| echo: false
 #| warning: false
@@ -433,7 +476,17 @@ ggplot(unemployed_data, aes(x = reference_period, y = senior_unemployment, group
 
 ```
 
+The study of senior unemployment sheds light on the intricate interplay between education levels and job market viability. Key observations include:
 
+- **Divergent Patterns**: A pronounced decrease in unemployment rates was observed among seniors with vocational training as seen from @tbl-senior2019 and @tbl-senior2022, while those with higher academic degrees saw an uptick, raising questions about the alignment between higher education and job opportunities in the market.
+
+- **Consistency Among University Graduates**: Seniors holding university degrees experienced a marginal increase in unemployment, suggesting a relative consistency within this group compared to others.
+
+- **Overall Shifts**: There was an overall reduction in senior unemployment from 2019 to 2023 with a decrease of approximately  $\approx 13.54 \%$ and a decrease of approximately $\approx 6.11 \%$ from 2022 to 2023, pointing towards potential shifts in retirement age, economic recoveries, or evolving job opportunities for seniors. 
+
+- The overarching trends in senior unemployment call for strategic educational planning and job placement efforts tailored to the nuanced needs of the aging workforce.
+
+- The plotted data shown in @fig-unempsenior provides a visual narrative of unemployment trends among seniors, highlighting that educational achievements translate differently into job security for the senior population.
 
 
 # Discussion

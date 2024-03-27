@@ -61,8 +61,11 @@ column_names <- c("Education Level", "Reference Period", "Youth Unemployment", "
 kable(head(unemployed_data), col.names = column_names, caption = "Unemployed Dataset from 2019 to 2023 by Education Level")
 ```
 
+The dataset outlined in @tbl-data captures a comprehensive view of unemployment rates spanning from 2019 to 2023, segmented by different education levels. This rich dataset provides insights into the unemployment trends for three distinct age groups: youth, adults, and seniors, highlighting how economic fluctuations impact various demographics over time. The granularity of the data allows for an in-depth analysis of how education, as a key socio-economic factor, correlates with employment stability and job market resilience during periods of economic change.
 
 ## Data Measurement
+
+Our data set is comprised of data from the Labour Force Survey.
 
 ## Data Analysis
 

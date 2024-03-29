@@ -219,7 +219,7 @@ modelsummary::modelsummary(
     "Baseline Model for Youth Unemployment" = model
   ),
   coef_rename = custom_coef_names,
-  stars = TRUE,
+  stars = FALSE,
   fmt = 2,
 )
 ```
@@ -536,13 +536,15 @@ The study of senior unemployment sheds light on the intricate interplay between 
 
 # Discussion
 
-## First discussion point
+Given the results, it is important for us to discuss why we are seeing such results, and what they actually mean moving forward. 
 
-If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this. 
+## What we learn from these results
 
-## Second discussion point
+## Why are we seeing these results
 
-## Third discussion point
+
+
+## What could this entail for the future
 
 ## Weaknesses and next steps
 

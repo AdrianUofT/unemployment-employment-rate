@@ -12,6 +12,7 @@
 library(readr)
 library(lubridate)
 library(tidyverse)
+library(tidyr)
 library(dplyr)
 library(knitr)
 library(janitor)

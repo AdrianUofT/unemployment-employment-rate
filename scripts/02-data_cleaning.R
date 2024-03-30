@@ -10,6 +10,7 @@
 #### Workspace setup ####
 library(readr)
 library(lubridate)
+library(tidyr)
 library(tidyverse)
 library(dplyr)
 library(knitr)
@@ -63,3 +64,4 @@ unemployed_data <- unemployed_data %>%
 
 #### Save data ####
 write_csv(unemployed_data, here::here("data/analysis_data/cleaned_unemployed_data.csv"))
+write_parquet(unemployed_data, here::here("data/analysis_data/cleaned_unemployed_data.parquet"))

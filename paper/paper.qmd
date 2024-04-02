@@ -613,7 +613,7 @@ These shifts necessitate a reevaluation of the role of human workers in an incre
 
 - **Innovation and Creativity**: Leveraging innate human creativity to drive innovation, an area where AI can assist but not originate.
 
-- **Physical Presence**: Jobs that require a physical presence as mentioned before are less likely to be replaced by AI. For instance, it is difficult for AI to replace people such as plumbers firefighters or people working in trades. 
+- **Physical Presence**: Jobs that require a physical presence as mentioned before are less likely to be replaced by AI. For instance, it is difficult for AI to replace people such as plumbers, firefighters or people working in trades. 
 
 As we move forward, the interaction between human labor, AI, and the global workforce will shape the future of employment. Companies and individuals alike must navigate these waters with foresight, balancing the benefits of technological and global workforce integration with the need to maintain a vibrant, engaged, and skilled human workforce. The challenge lies not in resisting change but in adapting to it, ensuring that the workforce of the future is equipped to complement emerging technologies rather than be displaced by them.
 

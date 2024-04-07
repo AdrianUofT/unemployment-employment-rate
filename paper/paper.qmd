@@ -5,7 +5,7 @@ author:
 thanks: "Code and data are available at: [LINK](https://github.com/AdrianUofT/unemployment-employment-rate)"
 date: today
 date-format: long
-abstract: "This paper investigates the relationship between educational attainment and unemployment rates amidst the evolving dynamics of technological advancement and globalization, utilizing data from the Labour Force Survey spanning 2019 to 2023. Our analysis reveals significant variability in unemployment rates across different educational levels, highlighting the nuanced impact of higher education in an era increasingly dominated by artificial intelligence and outsourcing. These findings underscore the critical need for educational systems to adapt, emphasizing skills that complement technological advancements and align with the global job market. Ultimately, this study illuminates the complex interplay between education, employment, and technological change, offering valuable insights for policymakers and educators in preparing the workforce for the challenges of the future labor market."
+abstract: "This paper investigates the relationship between educational attainment and unemployment rates amidst the evolving dynamics of technological advancement and globalization, utilizing data from the Labour Force Survey spanning 2019 to 2023. Our analysis reveals significant variability in unemployment rates across different educational levels, highlighting the nuanced impact of higher education in an era increasingly dominated by artificial intelligence and outsourcing. These findings underscore the critical need for educational systems to adapt, emphasizing skills that complement technological advancements and align with the global job market. This study illuminates the complex interplay between education, employment, and technological change, offering valuable insights for policymakers and educators in preparing the workforce for the challenges of the future labor market."
 format: pdf
 number-sections: true
 bibliography: references.bib
@@ -71,7 +71,7 @@ column_names <- c("Education Level", "Reference Period", "Youth Unemployment", "
 kable(head(unemployed_data), col.names = column_names, caption = "Unemployed Dataset from 2019 to 2023 by Education Level")
 ```
 
-The dataset outlined in @tbl-data captures a comprehensive view of unemployment rates spanning from 2019 to 2023, segmented by different education levels. This rich dataset provides insights into the unemployment trends for three distinct age groups: youth, adults, and seniors, highlighting how economic fluctuations impact various demographics over time. The granularity of the data allows for an in-depth analysis of how education, as a key socio-economic factor, correlates with employment stability and job market resilience during periods of economic change.
+The dataset outlined in @tbl-data captures a view of unemployment rates spanning from 2019 to 2023, segmented by different education levels. This rich dataset provides insights into the unemployment trends for three distinct age groups: youth, adults, and seniors, highlighting how economic fluctuations impact various demographics over time. The granularity of the data allows for an in-depth analysis of how education, as a key socio-economic factor, correlates with employment stability and job market resilience during periods of economic change.
 
 ## Data Measurement
 
@@ -91,7 +91,7 @@ Our data set is comprised of data from the `Labour Force Survey` [@citedatasetso
 
 - Supplementary Surveys
 
-  - In conjunction with the LFS, surveys like the SEPH, EIS, and JVWS contribute to a comprehensive understanding of current labour market conditions, providing a more detailed and nuanced picture.
+  - In conjunction with the LFS, surveys like the SEPH, EIS, and JVWS contribute to an understanding of current labour market conditions, providing a more detailed and nuanced picture.
 
 - Data Collection Techniques
 
@@ -557,7 +557,7 @@ However, the data also highlight that higher education does not guarantee immuni
 
 The study also sheds light on the resilience of various demographic groups in the face of economic fluctuations. Individuals with vocational training, in particular, demonstrate robustness in maintaining employment, potentially due to the practical nature of their skills and the specific demand for trades in the economy. Similarly, those with higher education—despite facing some challenges—often show a lesser impact from economic downturns, indicating that higher education may still provide a buffer against the vagaries of the job market.
 
-These observations suggest that the job market values not just education but the relevance and applicability of the skills obtained. In other words, people are granted "seniorities", hence why they are seen as more valuable to a company. As economies evolve and new industries emerge, the adaptability of the workforce becomes crucial. Hence, continuous learning and skills development are imperative for both individuals and economies to thrive.
+These observations suggest that the job market values not just education but the relevance and applicability of the skills obtained. In other words, people are granted "seniorities", hence why they are seen as more valuable to a company. As economies evolve and new industries emerge, the adaptability of the workforce becomes necessary. Hence, continuous learning and skills development are imperative for both individuals and economies to thrive.
 
 ## Why are we seeing these results
 
@@ -575,7 +575,7 @@ The global economy is in a constant state of flux, influenced by technological c
 
 The impact of artificial intelligence (AI) on the job market is multifaceted and profound, acting as both a disruptor and a catalyst within the labor landscape. AI’s capacity for automating tasks has resulted in the displacement of certain jobs, particularly those involving routine and repetitive functions. However, it’s equally notable for creating new job categories that necessitate human oversight and management of these advanced systems. As AI redefines roles, the urgency for upskilling becomes apparent—workers are finding themselves in need of new competencies that align with the evolving demands of an AI-integrated workplace. The skills that are becoming increasingly indispensable are those that AI cannot easily replicate, such as complex problem-solving, critical thinking, and creative capacities. These skills highlight the enduring value of human ingenuity in the age of automation.
 
-Furthermore, AI's contribution to economic efficiency and productivity has the potential to spur economic growth, indirectly fostering job creation with a shift in required skill sets. The onus is on policymakers to navigate this transition, balancing the embrace of technological innovation with the need for robust support systems for the workforce. They face the challenge of creating policies that not only protect workers from the immediate risks of displacement but also encourage the development of industries poised to grow in the AI era. Ultimately, the integration of AI into the economy presents a complex narrative: while it may render some occupations obsolete, it simultaneously opens doors to new realms of employment. The key challenge—and opportunity—lies in harnessing AI as a tool to enhance human work, not replace it, by anticipating changes and preparing the workforce through education and training to thrive alongside intelligent machines.
+Furthermore, AI's contribution to economic efficiency and productivity has the potential to spur economic growth, indirectly fostering job creation with a shift in required skill sets. The onus is on policymakers to navigate this transition, balancing the embrace of technological innovation with the need for robust support systems for the workforce. They face the challenge of creating policies that not only protect workers from the immediate risks of displacement but also encourage the development of industries poised to grow in the AI era. The integration of AI into the economy presents a complex narrative: while it may render some occupations obsolete, it simultaneously opens doors to new realms of employment. The key challenge—and opportunity—lies in harnessing AI as a tool to enhance human work, not replace it, by anticipating changes and preparing the workforce through education and training to thrive alongside intelligent machines.
 
 ### Job outsourcing
 
@@ -607,11 +607,11 @@ These shifts necessitate a reevaluation of the role of human workers in an incre
 
 - **Complex Problem-Solving**: Developing the ability to tackle intricate issues that require nuanced understanding and creative thinking, areas where AI still lags behind human capability.
 
-- **Emotional Intelligence**: Enhancing skills related to emotional awareness, empathy, and interpersonal communication, which are crucial in professions such as healthcare, education, and customer service where human interaction is paramount.
+- **Emotional Intelligence**: Enhancing skills related to emotional awareness, empathy, and interpersonal communication, which are important in professions such as healthcare, education, and customer service where human interaction is paramount.
 
 - **Adaptability and Lifelong Learning**: Staying agile in the face of technological advancements by continuously updating one's skill set and embracing new knowledge areas, particularly those that are complementary to AI technologies.
 
-- **Innovation and Creativity**: Leveraging innate human creativity to drive innovation, an area where AI can assist but not originate.
+- **Innovation and Creativity**: Innate human creativity to drive innovation, an area where AI can assist but not originate.
 
 - **Physical Presence**: Jobs that require a physical presence as mentioned before are less likely to be replaced by AI. For instance, it is difficult for AI to replace people such as plumbers, firefighters or people working in trades. 
 
@@ -629,23 +629,23 @@ Additionally, the rapid pace of change in the modern economy, driven by factors 
 
 To address these limitations and enhance the robustness of future data collection efforts, several steps can be taken:
 
-- **Expanding Coverage**: Efforts should be made to include hard-to-reach populations and those in non-traditional employment arrangements to ensure a more comprehensive representation of the labor force.
+- **Expanding Coverage**: Efforts should be made to include hard-to-reach populations and those in non-traditional employment arrangements to ensure a better representation of the labor force.
 
 - **Enhancing Data Collection Methods**: Incorporating a mix of quantitative and qualitative data collection methods could provide a more nuanced view of the labor market. This might involve detailed interviews, case studies, and the use of alternative data sources like social media analytics or real-time labor market data from online job platforms.
 
-- **Leveraging Technology**: Adopting advanced data collection technologies, such as mobile surveys or web scraping techniques, can offer more timely and frequent labor market insights, enabling a near-real-time analysis of trends.
+- **Utilizing Current Technology**: Adopting advanced data collection technologies, such as mobile surveys or web scraping techniques, can offer more timely and frequent labor market insights, enabling a near-real-time analysis of trends.
 
 - **Cross-validation with Other Data Sources**: To ensure the reliability and accuracy of the data, cross-validation with other labor market studies and administrative records can help identify and rectify discrepancies or biases in the survey data.
 
 - **Fostering International Collaboration**: As outsourcing and the global distribution of labor become increasingly prevalent, international collaboration in labor market research can provide a more holistic view of global employment trends, helping to contextualize domestic data within the broader global economy.
 
-By addressing these weaknesses and adopting forward-looking data collection strategies, future research can provide deeper insights into the evolving labor market, ultimately informing more effective policy interventions and workforce development initiatives.
+By addressing these weaknesses and adopting forward-looking data collection strategies, future research can provide deeper insights into the evolving labor market, thus informing more effective policy interventions and workforce development initiatives.
 
 # Conclusion
 
 In conclusion, our exploration of unemployment rates across various educational levels and demographics, set against the backdrop of an evolving technological landscape and globalized economy, reveals intricate patterns and raises critical questions about the future of work. The data suggests that educational attainment plays a significant role in employment prospects, yet it is clear that the nature of education and the fields of study are pivotal in determining its true value in the job market. As artificial intelligence and automation become increasingly prevalent, the threat of job displacement looms large, not just for manual or routine jobs but also for roles traditionally considered secure within the realms of higher education.
 
-The trend of outsourcing further complicates the employment narrative, presenting both challenges and opportunities as companies seek to leverage the global talent pool. This shift necessitates a reevaluation of domestic workforce strategies and underscores the importance of fostering skills that are resilient to these global trends, such as emotional intelligence, creativity, and adaptability.
+The trend of outsourcing further complicates the employment narrative, presenting both challenges and opportunities as companies seek to utilize the global talent pool. This shift necessitates a reevaluation of domestic workforce strategies and underscores the importance of fostering skills that are resilient to these global trends, such as emotional intelligence, creativity, and adaptability.
 
 As we stand at the cusp of significant shifts in the labor market, policymakers, educators, and individuals must engage in proactive dialogue and action. There is a pressing need to align educational programs with future job market demands, emphasizing not just technical skills but also the soft skills that distinguish human workers from AI. Moreover, lifelong learning must be integrated into career trajectories to ensure that the workforce remains adaptable to emerging technologies and industry shifts.
 

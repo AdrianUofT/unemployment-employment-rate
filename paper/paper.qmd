@@ -5,7 +5,7 @@ author:
 thanks: "Code and data are available at: [LINK](https://github.com/AdrianUofT/unemployment-employment-rate)"
 date: today
 date-format: long
-abstract: "This paper investigates the relationship between educational attainment and unemployment rates amidst the evolving dynamics of technological advancement and globalization, utilizing data from the Labour Force Survey spanning 2019 to 2023. Our analysis reveals significant variability in unemployment rates across different educational levels, highlighting the nuanced impact of higher education in an era increasingly dominated by artificial intelligence and outsourcing. These findings underscore the critical need for educational systems to adapt, emphasizing skills that complement technological advancements and align with the global job market. This study illuminates the complex interplay between education, employment, and technological change, offering valuable insights for policymakers and educators in preparing the workforce for the challenges of the future labor market."
+abstract: "This paper investigates the relationship between educational attainment and unemployment rates amidst the evolving dynamics of technological advancement and globalization, utilizing data from the Labour Force Survey spanning 2019 to 2023. The analysis reveals significant variability in unemployment rates across different educational levels, highlighting the nuanced impact of higher education in an era increasingly dominated by artificial intelligence and outsourcing. These findings underscore the critical need for educational systems to adapt, emphasizing skills that complement technological advancements and align with the global job market. This study illuminates the complex interplay between education, employment, and technological change, offering valuable insights for policymakers and educators in preparing the workforce for the challenges of the future labor market."
 format: pdf
 number-sections: true
 bibliography: references.bib
@@ -44,13 +44,13 @@ In recent years, the narrative surrounding employment and the value of higher ed
 
 This paper delves into the nuanced relationship between educational levels and unemployment rates, set against the backdrop of rapid technological change and globalization. By analyzing unemployment trends across various demographics from 2019 to 2023, this study seeks to uncover how different levels of education impact an individual's likelihood of employment. Amid widespread discourse on the diminishing returns of higher education in certain sectors, and the transformative potential of artificial intelligence (AI) and automation to replace traditional jobs, this research aims to provide empirical insights into these phenomena.
 
-A significant gap exists in understanding the real-time implications of these global shifts on employment, particularly in how educational attainment intersects with evolving job market demands. This study addresses this gap by utilizing data from the Labor Force Survey, exploring the interplay between education and unemployment, and considering the external factors influencing these relationships.
+A significant gap exists in understanding the real-time implications of these global shifts on employment, particularly in how educational attainment intersects with evolving job market demands. This study addresses this gap by utilizing data from the Labor Force Survey (@citedatasetsource), exploring the interplay between education and unemployment, and considering the external factors influencing these relationships.
 
 The findings reveal varied unemployment rates across educational strata, with notable differences in how higher education correlates with job security in the face of AI integration and outsourcing trends. These results underscore the necessity for a reevaluation of educational objectives and curricula, emphasizing skills that are less susceptible to automation and more aligned with emerging industry needs.
 
 The importance of this research lies in its potential to inform policy decisions and educational strategies, aiming to foster a workforce that is adaptable, skilled, and prepared for the challenges of the future job market. By providing a clearer understanding of the current employment landscape, this paper contributes to the broader discourse on preparing for a labor market in flux.
 
-The paper is structured as follows: Following this introduction, we describe the methodology and data sources used in our analysis in (@sec-data). Subsequent sections present the model we estimate (@sec-model), and results (@sec-results) showcasing the implications of educational attainment on unemployment rates. The paper concludes with a discussion (@sec-discussion) of the findings, limitations, and recommendations for future research and policy considerations.
+The paper is structured as follows: Following this introduction, we describe the methodology and data sources used in the analysis in (@sec-data). Subsequent sections present the model we estimate (@sec-model), and results (@sec-results) showcasing the implications of educational attainment on unemployment rates. The paper concludes with a discussion (@sec-discussion) of the findings, limitations, and recommendations for future research and policy considerations.
 
 # Data {#sec-data}
 
@@ -121,7 +121,7 @@ This survey's methodology and the rapid release of its results make the LFS a co
 
 ## Data Analysis
 
-This paper uses the Statistics of Canada `Unemployment rate, participation rate and employment rate by educational attainment, annual` [@citedataset] dataset. We are using the `R programming language` [@citeR] to conduct our analysis along with `readR` [@citereadR], `lubridate` [@citelubridate], `tidyverse` [@citetidyverse], `dplyr` [@citedplyr], `tidyr` [@citetidyr], `knitr` [@citeknitr], `janitor` [@citejanitor], `scales` [@citescales], `RColorBrewer` [@citeRColorBrewer], `ggplot2` [@citeggplot2], `kableExtra` [@citekableExtra], `here` [@citeHere], `arrow` [@citeArrow], `rstanarm` [@citerstanarm], `modelsummary` [@citemodelsummary], and `lme4` [@citelme4].
+This paper uses the Statistics of Canada `Unemployment rate, participation rate and employment rate by educational attainment, annual` [@citedataset] dataset. We are using the `R programming language` [@citeR] to conduct the analysis along with `readR` [@citereadR], `lubridate` [@citelubridate], `tidyverse` [@citetidyverse], `dplyr` [@citedplyr], `tidyr` [@citetidyr], `knitr` [@citeknitr], `janitor` [@citejanitor], `scales` [@citescales], `RColorBrewer` [@citeRColorBrewer], `ggplot2` [@citeggplot2], `kableExtra` [@citekableExtra], `here` [@citeHere], `arrow` [@citeArrow], `rstanarm` [@citerstanarm], `modelsummary` [@citemodelsummary], and `lme4` [@citelme4].
 
 # Model {#sec-model}
 
@@ -347,7 +347,7 @@ $$
 
 The overall percentage change for the youth unemployment rate is $\approx 0.92 \%$ increase between 2019 and 2023 and $\approx 10.45 \%$ increase between 2022 and 2023. 
 
-The figures and tables from our analysis present a nuanced picture of youth unemployment across different educational strata over a period extending from 2019 to 2023.
+The figures and tables from the analysis present a nuanced picture of youth unemployment across different educational strata over a period extending from 2019 to 2023.
 
 - **Trends Over Time**: A clear pattern of fluctuation is evident in the unemployment rates. The peak observed in 2020 may correlate with the economic downturn caused by the COVID-19 pandemic, affecting youth employment disproportionately.
 
@@ -545,7 +545,7 @@ The study of senior unemployment sheds light on the intricate interplay between 
 
 ## What we learn from these results
 
-From the results of our analysis, two key insights emerge that expand our understanding of the global labor market and its interplay with education.
+From the results of the analysis, two key insights emerge that expand our understanding of the global labor market and its interplay with education.
 
 ### The Impact of Education on Employment
 
@@ -619,7 +619,7 @@ As we move forward, the interaction between human labor, AI, and the global work
 
 ## Weaknesses and next steps
 
-In evaluating the data and methodology utilized in our analysis, several weaknesses warrant attention, alongside considerations for future data collection efforts aimed at refining our understanding of the labor market dynamics.
+In evaluating the data and methodology utilized in the analysis, several weaknesses warrant attention, alongside considerations for future data collection efforts aimed at refining our understanding of the labor market dynamics.
 
 One notable limitation is the potential for sampling bias inherent in survey-based data collection methods like the Labour Force Survey. Despite rigorous sampling techniques, certain segments of the population, such as transient workers or those in informal employment sectors, might be underrepresented, leading to gaps in the captured data. This underrepresentation could skew the unemployment rates and not fully reflect the nuances of the job market.
 
